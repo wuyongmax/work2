@@ -27,6 +27,7 @@ func healthCheck(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetComputeInfo(w http.ResponseWriter, r *http.Request) {
+	//手动构造的VERSION
 	version := os.Getenv("VERSION")
 	addr := r.RemoteAddr
 	ar := strings.Split(addr, ":")
