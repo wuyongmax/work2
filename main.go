@@ -30,7 +30,9 @@ func GetComputeInfo(w http.ResponseWriter, r *http.Request) {
 	version := os.Getenv("VERSION")
 	addr := r.RemoteAddr
 	ar := strings.Split(addr, ":")
+	r.Header.Get("")
 	ip := ar[0]
+	// go func(){}()
 	port := ar[1]
 	logger.Lg.Info(fmt.Sprintf("client ip is %s port %s", ip, port))
 	for k, v := range r.Header {
