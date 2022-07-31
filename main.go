@@ -6,18 +6,20 @@ import (
 	"net/http"
 	"os"
 	"strings"
-	"work/logger"
+	"log"
+//	"flag"
+//	"github.com/golang/glog"
 )
 
 func main() {
-	logger.Init()
-	logger.Lg.Info("begin the process")
+//	flag.Set("v",4)
+//	glog.V(2).Info("in main")
 	http.HandleFunc("/health", healthCheck)
 	http.HandleFunc("/GetComputeInfo", GetComputeInfo)
 
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
-		logger.Lg.Error("server error 500")
+		log.Fatal("server error 500")
 	}
 }
 
@@ -34,8 +36,9 @@ func GetComputeInfo(w http.ResponseWriter, r *http.Request) {
 	r.Header.Get("")
 	ip := ar[0]
 	// go func(){}()
+	fmt.Println("")
 	port := ar[1]
-	logger.Lg.Info(fmt.Sprintf("client ip is %s port %s", ip, port))
+	fmt.Println(fmt.Sprintf("client ip is %s port %s", ip, port))
 	for k, v := range r.Header {
 		w.Header().Set(k, v[0])
 
